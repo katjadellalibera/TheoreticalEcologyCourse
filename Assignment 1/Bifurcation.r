@@ -24,7 +24,7 @@ LogisticMap<-function(N0,r,TimeSteps){
   return(Results)
 } 
 
-## Plot the Diagram 
+## Plot the Diagram for Logistic Map
 plot(0,0, xlim=c(0,4), ylim=c(-0.05,1.05),type="n", xlab="r", ylab="X") 
 for (r in seq(0.001,4,0.005)) { # These are the initial and final values for r
   out <- LogisticMap(0.5,r,2500) # Initial conditions 
@@ -34,3 +34,25 @@ for (r in seq(0.001,4,0.005)) { # These are the initial and final values for r
   l <- length(out) 
   points(rep(r, length(p)), p, pch=".")
 }
+
+## This function creates a simulation of the Ricker model
+Ricker<-function(N0,r,b,TimeSteps){
+  Results<-rep(0,TimeSteps) 
+  Results[1]<-N0 
+  for (j in 2:TimeSteps){
+    Results[j]<-r*Results[j-1]*exp(-b*Results[j-1])
+  } 
+  return(Results)
+} 
+
+## Plot the Diagram for Ricker
+plot(0,0, xlim=c(0,20), ylim=c(-1,8),type="n", xlab="r", ylab="X") 
+for (r in seq(0.001,20,0.005)) { # These are the initial and final values for r
+  out <- Ricker(0.5,r,1,2500) # Initial conditions 
+  l <- length(out) %/% 10 # use only the last 250 steps 
+  out <- out[(9*l):(10*l)] 
+  p <- peaks(out) 
+  l <- length(out) 
+  points(rep(r, length(p)), p, pch=".")
+}
+
