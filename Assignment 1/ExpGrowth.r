@@ -17,7 +17,7 @@ ExponentialGrowth<-function(t, state, parameters) {
 }
 
 ## This function runs the model and produces the trajectory
-RunExponentialGrowth<-function(MaxTime=10,GrowthRate=0.2,InitialX=1.0){
+RunExponentialGrowth<-function(MaxTime=10,GrowthRate=0.3,InitialX=1.0){
   times <- seq(0, MaxTime, by = 0.01)
   parameters <- c(r=GrowthRate)
   state <- c(ExponentialX=InitialX)
@@ -159,9 +159,9 @@ ggplot(allOut,  aes(x=time))  +
   geom_line(aes(y=AlleeX, colour = "Allee")) +
   geom_line(aes(y=ThetaX, colour = "Theta-Logistic")) +
   scale_color_manual(name = "Model", 
-                     values = c("Exponential" = "red", "Logistic" = "blue",
+                     values = c("Exponential" = "darkgreen", "Logistic" = "blue",
                                 "Allee" = "orange", 
-                                "Theta-Logistic" = "darkgreen")) +
+                                "Theta-Logistic" = "red")) +
   ylab("Population Size") +
   xlab("Time")
 
