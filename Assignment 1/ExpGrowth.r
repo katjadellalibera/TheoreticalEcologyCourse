@@ -45,7 +45,7 @@ LogisticGrowth<-function(t, state, parameters) {
 
 ## This function runs the model and produces the trajectory
 RunLogisticGrowth<-function(MaxTime = 10, GrowthRate = 0.5,
-                            CarryingCapacity = 5, InitialX = 1.0){
+                            CarryingCapacity = 10, InitialX = 1.0){
   times <- seq(0, MaxTime, by = 0.01)
   parameters <- c(r=GrowthRate,k=CarryingCapacity)
   state <- c(LogisticX=InitialX)
@@ -130,7 +130,7 @@ ThetaLogisticGrowth<-function(t, state, parameters) {
 
 ## This function runs the model and produces the trajectory
 RunThetaLogisticGrowth<-function(MaxTime = 10, GrowthRate = 1,
-                         CarryingCapacity = 10, Theta = 1,
+                         CarryingCapacity = 10, Theta = 0.5,
                          InitialX = 1){
   times <- seq(0, MaxTime, by = 0.01)
   parameters <- c(r= GrowthRate, k = CarryingCapacity, theta = Theta)
@@ -153,10 +153,21 @@ allOut <- merge(allOut,as.data.frame(LevinOut), by = "time")
 allOut <- merge(allOut,as.data.frame(ThetaLogisticOut), by = "time")
 
 
-ggplot(as.data.frame(ThetaLogisticOut)) +
-  aes(x=time, y=ThetaX) +
+ggplot(allOut,  aes(x=time))  +
+  geom_line(aes(y=ExponentialX, colour = "Exponential")) +
+  geom_line(aes(y=LogisticX, colour = "Logistic")) +
+  geom_line(aes(y=AlleeX, colour = "Allee")) +
+  geom_line(aes(y=ThetaX, colour = "Theta-Logistic")) +
+  scale_color_manual(name = "Model", 
+                     values = c("Exponential" = "red", "Logistic" = "blue",
+                                "Allee" = "orange", 
+                                "Theta-Logistic" = "darkgreen")) +
+  ylab("Population Size") +
+  xlab("Time")
+
+
+# plot Levin
+ggplot(as.data.frame(LevinOut)) +
+  aes(x=time, y=LevinX) +
   geom_line() +
-  ggtitle("Theta-Logistic growth") +
-  ylab("Density of X") +
-  xlab("Time") + 
-  theme_bw()
+  ylab("Fraction of Occupied patches") 
