@@ -12,6 +12,22 @@ knitr::opts_chunk$set(echo = TRUE)
 _In examining the dimensionless Lotka-Volterra competition model in class, we saw that for_ $u^∗_1 = 1, u^∗_2 = 0$ _to be stable, we needed_ $\alpha_{21} > 1$. _Interpret and justify this result._
 _Would your conclusions be affected if you learned that_ $\alpha_{12}$ _were extremely large?_
 
+$\alpha_{21}$ is the effect of species 1 on species 2. If it is smaller than 1, that means that the presence of species 1 will allow for more growth in species 2 when it invades. This means the equilibrium of only species 1 is unstable. This is still true when $\alpha_{12}$, the effect of species 2 on species one is large. Because this effect is negative, it would even speed up the replacement of species 1.
+
+## 2. Invasion Analysis
+
+$$\left. \frac{dN_1}{dt}\right. |_{N_1=0,N_2=N_2^*}>0$$
+We look at the equation for $\frac{dN_1}{dt}$ when $N_1$ is very very small
+$$\frac{dN_1}{dt}= r_1N_1(1-\frac{N_1}{K_1}-b_{1,2}\frac{N^*_2}{K_1})$$
+$rN_1$ is going to be very small but positive when $N_1$ invades so we search for an expression where $(1-\frac{N_1}{K_1}-b_{1,2}\frac{N_2}{K_1})>0$. Since $\frac{N_1}{K_1}$ is very small, everything depends on $b_{1,2}\frac{N_2^*}{K_1}<1$. This is the case when $b_{1,2}N_2^*<K_1$.
+Put biologically, the negative effect of species 2 on species 1 at species 2's equilibrium $b_{1,2}N_2$ needs to be smaller than the carrying capacity of $K_1$. This makes sense intuitively since 
+
+
+## 3. Equilibria and their Stability 
+
+$$ \frac{dx}{dt}=x(24-x-2y)$$
+$$ \frac{dy}{dt} = y(30-y-2x)$$
+
 ```{r}
 ```
 
