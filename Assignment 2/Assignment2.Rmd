@@ -20,13 +20,30 @@ $$\left. \frac{dN_1}{dt}\right. |_{N_1=0,N_2=N_2^*}>0$$
 We look at the equation for $\frac{dN_1}{dt}$ when $N_1$ is very very small
 $$\frac{dN_1}{dt}= r_1N_1(1-\frac{N_1}{K_1}-b_{1,2}\frac{N^*_2}{K_1})$$
 $rN_1$ is going to be very small but positive when $N_1$ invades so we search for an expression where $(1-\frac{N_1}{K_1}-b_{1,2}\frac{N_2}{K_1})>0$. Since $\frac{N_1}{K_1}$ is very small, everything depends on $b_{1,2}\frac{N_2^*}{K_1}<1$. This is the case when $b_{1,2}N_2^*<K_1$.
-Put biologically, the negative effect of species 2 on species 1 at species 2's equilibrium $b_{1,2}N_2$ needs to be smaller than the carrying capacity of $K_1$. This makes sense intuitively since 
+Put biologically, the negative effect of species 2 on species 1 at species 2's equilibrium $b_{1,2}N_2$ needs to be smaller than the carrying capacity of $K_1$. This makes sense intuitively since in order to invade while $N_2$ is at equilibirum there needs to be some empty space in the niche that $N_1$ would occupy and part of which it shares with $N_2$. This ties in with the traditional few of competition as a description of the niche overlap of two species. The term $b_{1,2}\frac{N_2^*}{K_1}$ is the same as $a_{1,2}$ in our substitution.
+Comparing invasibility analysis to stability analysis, we see they are very similar, both setting one species to its equilibirum and the other one close to its equilibrium then looking at the rate of change. 
 
 
 ## 3. Equilibria and their Stability 
 
 $$ \frac{dx}{dt}=x(24-x-2y)$$
 $$ \frac{dy}{dt} = y(30-y-2x)$$
+We solve for equilibria:
+$$\begin{cases} 
+x^*= 0 \\
+y^*= 0
+\end{cases}
+\begin{cases} 
+x^*= 0 \\
+y^*= 30
+\end{cases}\begin{cases} 
+x^*= 24 \\
+y^*= 0
+\end{cases}
+\begin{cases} 
+x^*= 12 \\
+y^*= 6
+\end{cases}$$
 
 ```{r}
 ```
