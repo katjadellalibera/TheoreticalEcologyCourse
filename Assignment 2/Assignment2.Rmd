@@ -28,8 +28,9 @@ Comparing invasibility analysis to stability analysis, we see they are very simi
 
 $$ \frac{dx}{dt}=x(24-x-2y)$$
 $$ \frac{dy}{dt} = y(30-y-2x)$$
-We solve for equilibria:
-$$\begin{cases} 
+We solve to find the equilibria:
+$$
+\begin{cases} 
 x^*= 0 \\
 y^*= 0
 \end{cases}
@@ -43,7 +44,60 @@ y^*= 0
 \begin{cases} 
 x^*= 12 \\
 y^*= 6
-\end{cases}$$
+\end{cases}
+$$
+We can see that of the four equilibria only $x^*= 12 y^*= 6$ is feasible since $x>0$ and $y>0$. 
+Next we evaluate all four points for stability using the Jacobian matrix of the system.
+$$
+\mathbf{J} = 
+\begin{bmatrix}
+\displaystyle \frac{\partial f_1}{\partial u_1} & \displaystyle \frac{\partial f_1}{\partial u_2}\\
+\displaystyle \frac{\partial f_2}{\partial u_1} & \displaystyle \frac{\partial f_2}{\partial u_2}
+\end{bmatrix} = 
+\begin{bmatrix}
+24-2x-2y & -2x \\ 
+-2y & 30-2y-2x
+\end{bmatrix}
+$$
+From here we check whether $Det(\mathbf{J})>0$ and $Tr(\mathbf{J})<0$ for each potential eqilibrium. 
+
+For $x^*=y^*=0$
+$$
+\mathbf{A} = 
+\begin{bmatrix}
+24 & 0 \\ 
+0 & 30
+\end{bmatrix}
+$$
+Thus the characteristic polynomial is 
+$$
+(24-\lambda)(30-\lambda) \rightarrow \lambda_1 = 30, \lambda_2 =24
+$$
+
+This means $Tr(\mathbf{A})>0$ and the equilibrium is unstable (remember $Tr(\mathbf{J})=\lambda_1+\lambda_2)$,$Det(\mathbf{J}) =\lambda_1\times\lambda_2$)
+
+For the second candidate $x^*= 0, y^*= 30$, 
+$$
+\mathbf{A}= 
+\begin{bmatrix}
+-36 & 0 \\ 
+-60 & -30
+\end{bmatrix}\\
+(-36-\lambda)(-30-\lambda)+60 = \lambda^2+66\lambda+1140
+$$
+Thus, again $Tr(\mathbf{A})>0$ and the equilibrium is unstable.
+
+For the third candidate $x^*= 24,  y^*= 0$
+$$
+\mathbf{A}= 
+\begin{bmatrix}
+-24 & -48 \\ 
+0 & -18
+\end{bmatrix}\\
+(-24-\lambda)(-18-\lambda)+48 = \lambda^2+42\lambda+480
+$$
+This equilibrium is also unstable since $Tr(\mathbf{A})>0$.
+
 
 ```{r}
 ```

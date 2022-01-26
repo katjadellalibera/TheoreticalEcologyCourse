@@ -175,11 +175,35 @@ pre code {
 </div>
 <div id="invasion-analysis" class="section level2">
 <h2>2. Invasion Analysis</h2>
-<p><span class="math display">\[\left. \frac{dN_1}{dt}\right. |_{N_1=0,N_2=N_2^*}&gt;0\]</span> We look at the equation for <span class="math inline">\(\frac{dN_1}{dt}\)</span> when <span class="math inline">\(N_1\)</span> is very very small <span class="math display">\[\frac{dN_1}{dt}= r_1N_1(1-\frac{N_1}{K_1}-b_{1,2}\frac{N^*_2}{K_1})\]</span> <span class="math inline">\(rN_1\)</span> is going to be very small but positive when <span class="math inline">\(N_1\)</span> invades so we search for an expression where <span class="math inline">\((1-\frac{N_1}{K_1}-b_{1,2}\frac{N_2}{K_1})&gt;0\)</span>. Since <span class="math inline">\(\frac{N_1}{K_1}\)</span> is very small, everything depends on <span class="math inline">\(b_{1,2}\frac{N_2^*}{K_1}&lt;1\)</span>. This is the case when <span class="math inline">\(b_{1,2}N_2^*&lt;K_1\)</span>. Put biologically, the negative effect of species 2 on species 1 at species 2’s equilibrium <span class="math inline">\(b_{1,2}N_2\)</span> needs to be smaller than the carrying capacity of <span class="math inline">\(K_1\)</span>. This makes sense intuitively since</p>
+<p><span class="math display">\[\left. \frac{dN_1}{dt}\right. |_{N_1=0,N_2=N_2^*}&gt;0\]</span> We look at the equation for <span class="math inline">\(\frac{dN_1}{dt}\)</span> when <span class="math inline">\(N_1\)</span> is very very small <span class="math display">\[\frac{dN_1}{dt}= r_1N_1(1-\frac{N_1}{K_1}-b_{1,2}\frac{N^*_2}{K_1})\]</span> <span class="math inline">\(rN_1\)</span> is going to be very small but positive when <span class="math inline">\(N_1\)</span> invades so we search for an expression where <span class="math inline">\((1-\frac{N_1}{K_1}-b_{1,2}\frac{N_2}{K_1})&gt;0\)</span>. Since <span class="math inline">\(\frac{N_1}{K_1}\)</span> is very small, everything depends on <span class="math inline">\(b_{1,2}\frac{N_2^*}{K_1}&lt;1\)</span>. This is the case when <span class="math inline">\(b_{1,2}N_2^*&lt;K_1\)</span>. Put biologically, the negative effect of species 2 on species 1 at species 2’s equilibrium <span class="math inline">\(b_{1,2}N_2\)</span> needs to be smaller than the carrying capacity of <span class="math inline">\(K_1\)</span>. This makes sense intuitively since in order to invade while <span class="math inline">\(N_2\)</span> is at equilibirum there needs to be some empty space in the niche that <span class="math inline">\(N_1\)</span> would occupy and part of which it shares with <span class="math inline">\(N_2\)</span>. This ties in with the traditional few of competition as a description of the niche overlap of two species. The term <span class="math inline">\(b_{1,2}\frac{N_2^*}{K_1}\)</span> is the same as <span class="math inline">\(a_{1,2}\)</span> in our substitution. Comparing invasibility analysis to stability analysis, we see they are very similar, both setting one species to its equilibirum and the other one close to its equilibrium then looking at the rate of change.</p>
 </div>
 <div id="equilibria-and-their-stability" class="section level2">
 <h2>3. Equilibria and their Stability</h2>
-<p><span class="math display">\[ \frac{dx}{dt}=x(24-x-2y)\]</span> <span class="math display">\[ \frac{dy}{dt} = y(30-y-2x)\]</span></p>
+<p><span class="math display">\[ \frac{dx}{dt}=x(24-x-2y)\]</span> <span class="math display">\[ \frac{dy}{dt} = y(30-y-2x)\]</span> We solve to find the equilibria: <span class="math display">\[\begin{cases} 
+x^*= 0 \\
+y^*= 0
+\end{cases}
+\begin{cases} 
+x^*= 0 \\
+y^*= 30
+\end{cases}\begin{cases} 
+x^*= 24 \\
+y^*= 0
+\end{cases}
+\begin{cases} 
+x^*= 12 \\
+y^*= 6
+\end{cases}\]</span> We can see that of the four equilibria only <span class="math inline">\(x^*= 12 y^*= 6\)</span> is feasible since <span class="math inline">\(x&gt;0\)</span> and <span class="math inline">\(y&gt;0\)</span>. Next we evaluate all four points for stability using the Jacobian matrix of the system. <span class="math display">\[
+\mathbf{J} = 
+\begin{bmatrix}
+\displaystyle \frac{\partial f_1}{\partial u_1} &amp; \displaystyle \frac{\partial f_1}{\partial u_2}\\
+\displaystyle \frac{\partial f_2}{\partial u_1} &amp; \displaystyle \frac{\partial f_2}{\partial u_2}
+\end{bmatrix} = 
+\begin{bmatrix}
+24-2x-2y &amp; -2x \\ 
+-2y &amp; 30-2y-2x
+\end{bmatrix}
+\]</span> From here we check whether <span class="math inline">\(Det(\mathbf{J})&gt;0\)</span> and <span class="math inline">\(Tr(\mathbf{J})&lt;0\)</span> for each potential eqilibrium. (remember <span class="math inline">\(Tr(\mathbf{J})=\lambda_1+\lambda_2)\)</span>,<span class="math inline">\(Det(\mathbf{J}) =\lambda_1\times\lambda_2\)</span>) #</p>
 </div>
 
 

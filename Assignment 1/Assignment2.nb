@@ -10,14 +10,67 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[       811,         34]
-NotebookOptionsPosition[       561,         21]
-NotebookOutlinePosition[       951,         37]
-CellTagsIndexPosition[       908,         34]
+NotebookDataLength[      2678,         92]
+NotebookOptionsPosition[      2119,         74]
+NotebookOutlinePosition[      2509,         90]
+CellTagsIndexPosition[      2466,         87]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.8522073770998383`*^9, 
+  3.852207434343487*^9}},ExpressionUUID->"efed93f5-8c1b-4e79-ae01-\
+542197771c3e"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Solve", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"x", 
+       RowBox[{"(", 
+        RowBox[{"24", "-", "x", "-", 
+         RowBox[{"2", "y"}]}], ")"}]}], "==", "0"}], ",", 
+     RowBox[{
+      RowBox[{"y", 
+       RowBox[{"(", 
+        RowBox[{"30", "-", "y", "-", 
+         RowBox[{"2", "x"}]}], ")"}]}], "==", "0"}], ",", 
+     RowBox[{"x", ">=", "0"}], ",", 
+     RowBox[{"y", ">=", "0"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "y"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.852207716149096*^9, 3.8522077807705793`*^9}},
+ CellLabel->
+  "In[138]:=",ExpressionUUID->"ce5de3d0-d57a-43b1-90cb-5d6d33980856"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"x", "\[Rule]", "0"}], ",", 
+     RowBox[{"y", "\[Rule]", "0"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"x", "\[Rule]", "0"}], ",", 
+     RowBox[{"y", "\[Rule]", "30"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"x", "\[Rule]", "12"}], ",", 
+     RowBox[{"y", "\[Rule]", "6"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"x", "\[Rule]", "24"}], ",", 
+     RowBox[{"y", "\[Rule]", "0"}]}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.8522077815762587`*^9},
+ CellLabel->
+  "Out[138]=",ExpressionUUID->"349a9826-e882-4e2f-bff2-999a6974d0ca"]
+}, Open  ]]
 },
 WindowSize->{808, 755},
 WindowMargins->{{4, Automatic}, {Automatic, 4}},
@@ -36,9 +89,12 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
+Cell[558, 20, 154, 3, 30, "Input",ExpressionUUID->"efed93f5-8c1b-4e79-ae01-542197771c3e"],
+Cell[CellGroupData[{
+Cell[737, 27, 688, 21, 30, "Input",ExpressionUUID->"ce5de3d0-d57a-43b1-90cb-5d6d33980856"],
+Cell[1428, 50, 675, 21, 34, "Output",ExpressionUUID->"349a9826-e882-4e2f-bff2-999a6974d0ca"]
+}, Open  ]]
 }
 ]
 *)
-
-(* End of internal cache information *)
 
