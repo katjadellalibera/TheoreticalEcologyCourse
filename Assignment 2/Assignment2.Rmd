@@ -84,8 +84,9 @@ $$
 -60 & -30
 \end{bmatrix}\\
 (-36-\lambda)(-30-\lambda)+60 = \lambda^2+66\lambda+1140
+= \lambda^2 -Tr(\mathbf{A})\lambda + Det(\mathbf{A})
 $$
-Thus, again $Tr(\mathbf{A})>0$ and the equilibrium is unstable.
+Thus,  $Tr(\mathbf{A})=-66<0$ and $Det(\mathbf{A})=1140$ and the equilibrium is stable.
 
 For the third candidate $x^*= 24,  y^*= 0$
 $$
@@ -96,7 +97,21 @@ $$
 \end{bmatrix}\\
 (-24-\lambda)(-18-\lambda)+48 = \lambda^2+42\lambda+480
 $$
-This equilibrium is also unstable since $Tr(\mathbf{A})>0$.
+This equilibrium is also stable since $Tr(\mathbf{A})=-42<0$ and $Det(\mathbf{A})=1140>0$.
+
+For the fourth equilibirum $x^*= 12$ and $y^*= 6$.
+$$
+\mathbf{A}= 
+\begin{bmatrix}
+-12 & -24 \\ 
+-12 & -6
+\end{bmatrix}\\
+(-12-\lambda)(-6-\lambda)-288 = \lambda^2+18\lambda-260
+$$
+Thus, $Tr(\mathbf{A})=-18<0$, but $Det(\mathbf{A})=-260<0$ and the equilibrium is not feasible.
+
+To recap, the single-species equilibria are stable, but both the no-species and both-species equilibria are unstable.
+
 
 
 ```{r}
