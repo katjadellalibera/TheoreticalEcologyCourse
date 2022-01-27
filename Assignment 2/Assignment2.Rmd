@@ -1,6 +1,8 @@
 ---
-title: "Assignment 2: Two competing species"
-output: html_document
+title: 'Assignment 2: Two competing species'
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -21,7 +23,7 @@ We look at the equation for $\frac{dN_1}{dt}$ when $N_1$ is very very small
 $$\frac{dN_1}{dt}= r_1N_1(1-\frac{N_1}{K_1}-b_{1,2}\frac{N^*_2}{K_1})$$
 $rN_1$ is going to be very small but positive when $N_1$ invades so we search for an expression where $(1-\frac{N_1}{K_1}-b_{1,2}\frac{N_2}{K_1})>0$. Since $\frac{N_1}{K_1}$ is very small, everything depends on $b_{1,2}\frac{N_2^*}{K_1}<1$. This is the case when $b_{1,2}N_2^*<K_1$.
 Put biologically, the negative effect of species 2 on species 1 at species 2's equilibrium $b_{1,2}N_2$ needs to be smaller than the carrying capacity of $K_1$. This makes sense intuitively since in order to invade while $N_2$ is at equilibirum there needs to be some empty space in the niche that $N_1$ would occupy and part of which it shares with $N_2$. This ties in with the traditional few of competition as a description of the niche overlap of two species. The term $b_{1,2}\frac{N_2^*}{K_1}$ is the same as $a_{1,2}$ in our substitution.
-Comparing invasibility analysis to stability analysis, we see they are very similar, both setting one species to its equilibirum and the other one close to its equilibrium then looking at the rate of change. 
+Comparing invasibility analysis to stability analysis, we see they are very similar, both setting one species to its equilibirum and introducing change in the other. The difference is that invasibility always means the second species starts at 0, while stability analysis can mean the other species can be at any equilibrium and undergo a small change in population. 
 
 
 ## 3. Equilibria and their Stability 
@@ -84,7 +86,8 @@ $$
 -60 & -30
 \end{bmatrix}\\
 (-36-\lambda)(-30-\lambda)+60 = \lambda^2+66\lambda+1140
-= \lambda^2 -Tr(\mathbf{A})\lambda + Det(\mathbf{A})
+= \lambda^2 -Tr(\mathbf{A})\lambda + Det(\mathbf{A})\\
+ \rightarrow \lambda_1=-36,\quad \lambda_2=-30
 $$
 Thus,  $Tr(\mathbf{A})=-66<0$ and $Det(\mathbf{A})=1140$ and the equilibrium is stable.
 
@@ -95,7 +98,8 @@ $$
 -24 & -48 \\ 
 0 & -18
 \end{bmatrix}\\
-(-24-\lambda)(-18-\lambda)+48 = \lambda^2+42\lambda+480
+(-24-\lambda)(-18-\lambda)+48 = \lambda^2+42\lambda+480\\
+\rightarrow \lambda_1=-24,\quad \lambda_2=-18
 $$
 This equilibrium is also stable since $Tr(\mathbf{A})=-42<0$ and $Det(\mathbf{A})=1140>0$.
 
@@ -106,11 +110,31 @@ $$
 -12 & -24 \\ 
 -12 & -6
 \end{bmatrix}\\
-(-12-\lambda)(-6-\lambda)-288 = \lambda^2+18\lambda-260
+(-12-\lambda)(-6-\lambda)-288 = \lambda^2+18\lambda-260\\
+\rightarrow \lambda_1=-3 (3 + \sqrt{33})\approx-26.2337,\quad\lambda_2= 3 (-3 +\sqrt{33})\approx 8.23369
 $$
 Thus, $Tr(\mathbf{A})=-18<0$, but $Det(\mathbf{A})=-260<0$ and the equilibrium is not feasible.
 
 To recap, the single-species equilibria are stable, but both the no-species and both-species equilibria are unstable.
+Looking at the original set of equations we can get an intuition for why this is true, as the coefficient for the interaction with the other species is larger than for the interaction with other members of the same species.
+
+To classify our three equilibria, we can look at the Eigenvalues. Any point where the Eigenvalues have opposite signs is a saddle point, so this is the case when for the fourth equilibirum when $x^*= 12$ and $y^*= 6$.Depending on which direction the system is perturbed in, it will drive one of the species to extinction.
+For the other three equilibria, $Det(\mathbf{A})>0$ and the Eigenvalues are real with the same sign. This means all three are nodes.
+We can see the dynamics in the plot below.
+
+![Plot 1: the dynamics of the system shows the four equilibrium points](/Users/katjad/Documents/UChicago/Theoretical
+Ecology/TheoreticalEcologyCourseGithub/Assignment 2/StreamPlot.png)
+
+
+Code for the plot in Mathematica: 
+Show[{Plot[{(24 - x)/2, -2 (-15 + x)}, {x, 0, 30}, PlotStyle -> Black,
+    Frame -> True, FrameLabel -> {"x", "y"}], 
+  ListPlot[List /@ {{0, 0}, {0, 30}, {24, 0}, {12, 6}}, 
+   PlotStyle -> Directive[Black, PointSize[Large]], 
+   PlotMarkers -> {{Graphics[Circle[]], Medium}, None, 
+     None, {Graphics[Circle[]], Medium}}], 
+  StreamPlot[{x (24 - x - 2 y), y (30 - y - 2 x)}, {x, 0, 30}, {y, 0, 
+    30}]}, PlotRange -> {{0, 30}, {0, 30}}, AspectRatio -> 1]
 
 
 
