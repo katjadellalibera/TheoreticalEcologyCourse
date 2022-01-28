@@ -1,3 +1,4 @@
+
 ---
 title: 'Assignment 2: Two competing species'
 output:
@@ -6,8 +7,11 @@ output:
 ---
 
 ```{r setup, include=FALSE}
+tinytex::install_tinytex()
 knitr::opts_chunk$set(echo = TRUE)
+options(tinytex.verbose = TRUE)
 ```
+
 
 ## 1. Stability of one-species equilibirum
 
@@ -124,7 +128,6 @@ We can see the dynamics in the plot below.
 
 ![Plot 1: the dynamics of the system shows the four equilibrium points](/Users/katjad/Documents/UChicago/Theoretical
 Ecology/TheoreticalEcologyCourseGithub/Assignment 2/StreamPlot.png)
-
 
 Code for the plot in Mathematica: 
 Show[{Plot[{(24 - x)/2, -2 (-15 + x)}, {x, 0, 30}, PlotStyle -> Black,
