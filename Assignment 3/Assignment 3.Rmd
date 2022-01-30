@@ -22,8 +22,6 @@ With $S=250,\sigma=0.3$, how does stability depend on $C$.
 ### 2.2 stable cycles
 ### 2.3 unstable dynamics away from a nontrivial equilibrium
 ### 2.4 chaotic dynamics
-```{r pressure, echo=FALSE}
 
-```
 
 
