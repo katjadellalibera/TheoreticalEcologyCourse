@@ -55,8 +55,15 @@ for (cs in C){
   pred <- append(pred,sum(replicate(1000, stableQ(PPMatrix(S,cs,sigma)), simplify = TRUE )))
 }
 
-data <- data.frame(C,mays,pred)
+mays <- mays/1000
+pred <- pred/1000
 
-ggplot(data, aes(x = C)) +
-  geom_line(aes(y = mays), color = "black") +
-  geom_line(aes( y = pred), color = "red")
+
+df=data.frame(C = C,
+              values=c(mays, pred),
+              matrix=c(rep("May",50),rep("Predator-Prey",50))
+)
+
+
+ggplot(df,aes(C,values,col=matrix))+geom_line() +
+  ylab("fraction of stable communities")

@@ -1,0 +1,119 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      3681,        111]
+NotebookOptionsPosition[      2684,         85]
+NotebookOutlinePosition[      3074,        101]
+CellTagsIndexPosition[      3031,         98]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"Reduce", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Sqrt", "[", 
+     RowBox[{"250", "*", "c"}], "]"}], ">", 
+    RowBox[{"1", "/", 
+     RowBox[{"(", 
+      RowBox[{"3", "/", "10"}], ")"}]}]}], ",", "c"}], "]"}]], "Input",
+ CellChangeTimes->{{3.852592217533884*^9, 3.8525923163663607`*^9}},
+ CellLabel->"In[5]:=",ExpressionUUID->"27aed0da-c46f-44a7-b3e2-f641721a6187"],
+
+Cell[BoxData[
+ RowBox[{"c", ">", 
+  FractionBox["2", "45"]}]], "Output",
+ CellChangeTimes->{{3.8525922664505043`*^9, 3.852592316908019*^9}},
+ CellLabel->"Out[5]=",ExpressionUUID->"9f60a292-8fa9-46a0-9f2b-9adf6734cd6f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Reduce", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Sqrt", "[", 
+     RowBox[{"250", "*", "c"}], "]"}], ">", 
+    RowBox[{"1", "/", 
+     RowBox[{"(", "0.3", ")"}]}]}], ",", "c"}], "]"}]], "Input",
+ CellChangeTimes->{{3.852592365724368*^9, 3.8525923662439528`*^9}},
+ CellLabel->"In[6]:=",ExpressionUUID->"1cd934b9-664e-422e-8784-ce71568e74e6"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Reduce", "ratnz", 
+   "\"Reduce was unable to solve the system with inexact coefficients. The \
+answer was obtained by solving a corresponding exact system and numericizing \
+the result.\"", 2, 6, 4, 27185716928420403205, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.852592366961931*^9},
+ CellLabel->
+  "During evaluation of \
+In[6]:=",ExpressionUUID->"f1e0b446-185a-46ef-bd0a-1510a1d8206f"],
+
+Cell[BoxData[
+ RowBox[{"c", ">", "0.044444444444444446`"}]], "Output",
+ CellChangeTimes->{3.852592366974869*^9},
+ CellLabel->"Out[6]=",ExpressionUUID->"f34bb751-76aa-45d3-a939-4dcbc5efcf46"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"2", "/", "45"}], "//", "N"}]], "Input",
+ CellChangeTimes->{{3.852592372709202*^9, 3.852592375571714*^9}},
+ CellLabel->"In[7]:=",ExpressionUUID->"09136181-b65a-4754-abb8-2727175a985c"],
+
+Cell[BoxData["0.044444444444444446`"], "Output",
+ CellChangeTimes->{3.852592375992073*^9},
+ CellLabel->"Out[7]=",ExpressionUUID->"123642f2-9b35-4276-b29b-576558ac3e7e"]
+}, Open  ]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{4, Automatic}, {Automatic, 4}},
+FrontEndVersion->"12.3 for Mac OS X x86 (64-bit) (May 11, 2021)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"505960bf-56ae-43a7-a674-def50c2f9e94"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 392, 10, 30, "Input",ExpressionUUID->"27aed0da-c46f-44a7-b3e2-f641721a6187"],
+Cell[975, 34, 218, 4, 51, "Output",ExpressionUUID->"9f60a292-8fa9-46a0-9f2b-9adf6734cd6f"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1230, 43, 366, 9, 30, "Input",ExpressionUUID->"1cd934b9-664e-422e-8784-ce71568e74e6"],
+Cell[1599, 54, 450, 10, 46, "Message",ExpressionUUID->"f1e0b446-185a-46ef-bd0a-1510a1d8206f"],
+Cell[2052, 66, 190, 3, 34, "Output",ExpressionUUID->"f34bb751-76aa-45d3-a939-4dcbc5efcf46"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2279, 74, 218, 4, 30, "Input",ExpressionUUID->"09136181-b65a-4754-abb8-2727175a985c"],
+Cell[2500, 80, 168, 2, 34, "Output",ExpressionUUID->"123642f2-9b35-4276-b29b-576558ac3e7e"]
+}, Open  ]]
+}
+]
+*)
+

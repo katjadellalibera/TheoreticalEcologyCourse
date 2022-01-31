@@ -11,16 +11,86 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## 1. Community Stability: connections count
 
-With $S=250,\sigma=0.3$, how does stability depend on $C$.
+With $S=250,\sigma=0.3$, how does stability depend on $C$?
 
 ```{r question1}
+library(ggplot2)
+library(psych)
+S <- 250
+sigma <- 0.3
 
+MayMatrix<-function(S,C,sigma){
+  ## This matrix determines the connections
+  A<-matrix(runif(S*S),S,S)
+  ## Contains the values for the connections
+  B<-matrix(rnorm(S*S,0.0,sigma),S,S)
+  A<-(A<= C)*1 # A matrix contains 1 when A[i,j] <= C
+  M<-A*B
+  diag(M)<- -1
+  return(M)
+}
+
+PPMatrix<-function(S,C,sigma){
+  ## Determine the signs for the connections
+  MyS<-sign(rnorm(S*(S-1)/2))
+  A<-matrix(0,S,S)
+  A[upper.tri(A,diag=F)]<-MyS
+  D<-matrix(runif(S*S),S,S)
+  D<-(D <= C)*1
+  A<-D*A
+  A<- A-t(A)
+  ## Contains the  values for the connections
+  B<-matrix(abs(rnorm(S*S,0.0,sigma)),S,S)
+  M<-A*B
+  diag(M)<- -1
+  return(M)
+}
+
+stableQ<- function(m){
+  if(tr(m)<0 & det(m)>0){
+    return(1)
+  }else{
+    return(0)
+  }
+}
+
+
+C <-seq(0.01,0.5,by=0.01)
+
+mays <- c()
+for (cs in C){
+  mays <- append(mays,sum(replicate(1000, stableQ(MayMatrix(S,cs,sigma)), simplify = TRUE )))
+}
+     
+pred <- c()
+for (cs in C){
+  pred <- append(pred,sum(replicate(1000, stableQ(PPMatrix(S,cs,sigma)), simplify = TRUE )))
+}
+
+mays <- mays/1000
+pred <- pred/1000
+
+
+df=data.frame(C = C,
+              values=c(mays, pred),
+              matrix=c(rep("May",50),rep("Predator-Prey",50))
+)
+
+
+ggplot(df,aes(C,values,col=matrix))+geom_line() +
+  ylab("fraction of stable communities")
 ```
+We can see in the plot that both methods of generating matrices result in high stability for low values of C. The threshold May proves in his paper $\sqrt{SC}>\frac{1}{\sigma}$, is $C>2/45(\approx0.04444)$ when $S=250$ and $\sigma=0.3$. This is consistent with what we simulated. We can see the predator-prey matrix undergoes a similar transition at a much higher value of $C$, closer to 0.5.
+
 
 ## 2. Examples of particular dynamics
 ### 2.1 damped oscillations of a population to a stable equilibrium point
+
 ### 2.2 stable cycles
+The most famous example is the simple Lotka-Volterra model we started with.
+
 ### 2.3 unstable dynamics away from a nontrivial equilibrium
+
 ### 2.4 chaotic dynamics
 
 
