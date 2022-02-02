@@ -59,16 +59,16 @@ C <-seq(0.01,0.5,by=0.01)
 
 mays <- c()
 for (cs in C){
-  mays <- append(mays,sum(replicate(1000, stableQ(MayMatrix(S,cs,sigma)), simplify = TRUE )))
+  mays <- append(mays,sum(replicate(100, stableQ(MayMatrix(S,cs,sigma)), simplify = TRUE )))
 }
      
 pred <- c()
 for (cs in C){
-  pred <- append(pred,sum(replicate(1000, stableQ(PPMatrix(S,cs,sigma)), simplify = TRUE )))
+  pred <- append(pred,sum(replicate(100, stableQ(PPMatrix(S,cs,sigma)), simplify = TRUE )))
 }
 
-mays <- mays/1000
-pred <- pred/1000
+mays <- mays/100
+pred <- pred/100
 
 
 df=data.frame(C = C,
@@ -80,11 +80,14 @@ df=data.frame(C = C,
 ggplot(df,aes(C,values,col=matrix))+geom_line() +
   ylab("fraction of stable communities")
 ```
-We can see in the plot that both methods of generating matrices result in high stability for low values of C. The threshold May proves in his paper $\sqrt{SC}>\frac{1}{\sigma}$, is $C>2/45(\approx0.04444)$ when $S=250$ and $\sigma=0.3$. This is consistent with what we simulated. We can see the predator-prey matrix undergoes a similar transition at a much higher value of $C$, closer to 0.5.
+We can see in the plot that both methods of generating matrices result in high stability for low values of C. The threshold May proves in his paper $\sqrt{SC}>\frac{1}{\sigma}$, is $C>2/45(\approx0.04444)$ when $S=250$ and $\sigma=0.3$. This is consistent with what we simulated. We can see the predator-prey matrix undergoes a similar transition at a much higher value of $C$, closer to 0.25.
 
 
 ## 2. Examples of particular dynamics
 ### 2.1 damped oscillations of a population to a stable equilibrium point
+
+![The dynamics of the predator prey model with logistic growth](/Users/katjad/Documents/UChicago/Theoretical
+Ecology/TheoreticalEcologyCourseGithub/Assignment 3/2Example1)
 
 ### 2.2 stable cycles
 The most famous example is the simple Lotka-Volterra model we started with.
