@@ -111,12 +111,15 @@ $$
 Here $a$ is the growth rate of the prey $N$ independent of the predator $P$ (this means exponential growth without the predator). $b$ is the predation rate of the prey by the predator, $c$ is the conversion rate of eaten prey into predator (this is $b*\epsilon=c$, where $\epsilon$ is the conversion efficiency of killed prey into predator. Lastly, $d$ is the decay rate of the predator without any prey. 
 
 Figure 3 shows the isoclines and figure 4 the dynamics of this system when $a=2, b=1, c=0.9, d=0.5, N[0]=5, P[0]=2$
+
 ![The dynamics of the basic, Lotka-Volterra predator-prey model](/Users/katjad/Documents/UChicago/Theoretical
 Ecology/TheoreticalEcologyCourseGithub/Assignment 3/2Example2)
+
 ![The dynamics of the basic, Lotka-Volterra predator-prey model](/Users/katjad/Documents/UChicago/Theoretical
 Ecology/TheoreticalEcologyCourseGithub/Assignment 3/2Example2StableOscillations)
 
 ### 2.3 unstable dynamics away from a nontrivial equilibrium
+
 
 ### 2.4 chaotic dynamics
 
