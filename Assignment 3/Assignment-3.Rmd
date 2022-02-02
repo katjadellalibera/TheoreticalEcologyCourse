@@ -95,6 +95,7 @@ $$
 $$
 ![The dynamics of the predator prey model with logistic growth](/Users/katjad/Documents/UChicago/Theoretical
 Ecology/TheoreticalEcologyCourseGithub/Assignment 3/2Example1)
+
 Figure 1 shows the isoclines of this system when the birth rate of the prey $b=2$, the death rate of the prey $d=0.5$, the prey carrying capacity $K=15$, , the encounter rate $\alpha=0.5$, the conversion efficiency of the predator $\epsilon=0.9$, and the death rate for the predator $m=0.6$. We can see in this plot that whenever the system starts with $X>0$ and $Y>0$, we expect a spiral to the equilibrium. For example, let's start with $X=10$ and $Y=10$. The resulting oscillation can be seen in figure 2.
 
 ![The dynamics of the predator prey model with logistic growth](/Users/katjad/Documents/UChicago/Theoretical
@@ -108,11 +109,11 @@ $$
 \frac{dP}{dt}=P(cN-d)
 \end{cases}
 $$
-Here $a$ is the growth rate of the prey $N$ independent of the predator $P$ (this means exponential growth without the predator). $b$ is the predation rate of the prey by the predator, $c$ is the conversion rate of eaten prey into predator (this is $b*\epsilon=c$, where $\epsilon$ is the conversion efficiency of killed prey into predator. Lastly, $d$ is the decay rate of the predator without any prey. 
+Here $a$ is the growth rate of the prey $N$ independent of the predator $P$ (this means exponential growth without the predator). $b$ is the predation rate of the prey by the predator, $c$ is the conversion rate of eaten prey into predator (this is $b*\epsilon=c$, where $\epsilon$ is the conversion efficiency of killed prey into predator). Lastly, $d$ is the death rate of the predator without any prey. 
 
 Figure 3 shows the isoclines and figure 4 the dynamics of this system when $a=2, b=1, c=0.9, d=0.5, N[0]=5, P[0]=2$
 
-![The dynamics of the basic, Lotka-Volterra predator-prey model](/Users/katjad/Documents/UChicago/Theoretical
+![The dynamics and isoclines of the basic, Lotka-Volterra predator-prey model](/Users/katjad/Documents/UChicago/Theoretical
 Ecology/TheoreticalEcologyCourseGithub/Assignment 3/2Example2)
 
 ![The dynamics of the basic, Lotka-Volterra predator-prey model](/Users/katjad/Documents/UChicago/Theoretical
@@ -136,9 +137,67 @@ $$
 \begin{cases} N_1^*=\frac{r_1}{a_{11}}\\ N_2^*=0\end{cases}
 \begin{cases} N_1^*=-\frac{a_{22}r_1-a_{12}r_2}{a_{12}a{21}-a_{11}a_{22}}\\ N_2^*=-\frac{-a_{21}r_1+a_{11}r_2}{a_{12}a_{21}-a_{11}a_{22}}\end{cases}
 $$
+We can then look at the Jacobian to determine the conditions for the feasible equilibrium to be unstable. To simplify, we will take the Jacobian of the per capita growth rates of both species. 
+$$
+J= 
+\begin{bmatrix}
+-\alpha_{11} & -\alpha_{12}\\
+-\alpha_{21} & -\alpha_{22}
+\end{bmatrix}
+$$
+For this system to be stable, the real parts of the eigenvalues needs to be negative.
+The eigenvalues are
+$$
+\lambda_1=\frac{-\alpha_{11}-\alpha_{22}+\sqrt{\alpha_{11}^2-2\alpha_{11}\alpha_{22}+\alpha_{22}^2+4\alpha_{12}\alpha_{21}}}{2}\\
+\lambda_2=\frac{-\alpha_{11}-\alpha_{22}-\sqrt{\alpha_{11}^2-2\alpha_{11}\alpha_{22}+\alpha_{22}^2+4\alpha_{12}\alpha_{21}}}{2}
+$$
+Thus, the system is unstable whenever $\alpha_{11}\alpha_{22}<\alpha_{12}\alpha_{21}$.
 
+For example, let $r_1=r_2=2$, $\alpha_{11}=0.5$, $alpha_{12}=0.7$, $\alpha_{22}=0.6$, and $\alpha_{21}=0.8$. The resulting stream plot shows an unstable equilibrium and no matter how close to this equilibirum the population starts, it will converge to one of the single-species equilibria.
+
+![The dynamics of the competition model](/Users/katjad/Documents/UChicago/Theoretical
+Ecology/TheoreticalEcologyCourseGithub/Assignment 3/2Example3)
 
 ### 2.4 chaotic dynamics
+The probably most famous example of a simple equation leading to chaotic behavior is Robert May's logistic map model of population dynamics in a single species $x$.
 
+$$
+x_{n+1}=rx_n(1-x_n)
+$$
+Once again, $r$ represents a growth rate for the population but this time $x$ is not the absolute population size but rather a fraction representing the proportion of the maximum (carrying capacity) population size possible. For low values of $r$, the dynamics are stable, for intermediate values we get oscillations but for values of $r$ close to 4, the dynamics become chaotic. We created the bifurcation diagram for these dynamics in Assignment 1 as seen below.
+
+```{r logisticMap}
+## This function returns the values of the min and max 
+peaks <- function(x) {
+  if (min(x)==max(x)) return(min(x)) ## Does not oscillate 
+  l <- length(x) 
+  xm1 <- c(x[-1], x[l])
+  xp1 <- c(x[1], x[-l]) 
+  z<-x[x > xm1 & x > xp1 | x < xm1 & x < xp1] 
+  if (length(z)==0) return(min(x)) ## It has not converged yet 
+  return (z)
+} 
+
+## This function creates a simulation of the logistic map 
+LogisticMap<-function(N0,r,TimeSteps){
+  Results<-rep(0,TimeSteps) 
+  Results[1]<-N0 
+  for (j in 2:TimeSteps){
+    Results[j]<-r*Results[j-1]*(1-Results[j-1])
+  } 
+  return(Results)
+} 
+
+## Plot the Diagram for Logistic Map
+plot(0,0, xlim=c(0,4), ylim=c(-0.05,1.05),type="n", xlab="r", ylab="X") 
+for (r in seq(0.001,4,0.005)) { # These are the initial and final values for r
+  out <- LogisticMap(0.5,r,2500) # Initial conditions 
+  l <- length(out) %/% 10 # use only the last 250 steps 
+  out <- out[(9*l):(10*l)] 
+  p <- peaks(out) 
+  l <- length(out) 
+  points(rep(r, length(p)), p, pch=".")
+}
+```
 
 
