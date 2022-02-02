@@ -119,6 +119,23 @@ Ecology/TheoreticalEcologyCourseGithub/Assignment 3/2Example2)
 Ecology/TheoreticalEcologyCourseGithub/Assignment 3/2Example2StableOscillations)
 
 ### 2.3 unstable dynamics away from a nontrivial equilibrium
+An example of a model where we get an unstable nontrivial equilibrium is two consumers competing for the same resource where the intraspecific competition is larger than the interspecific competition.
+This can be described by the system:
+$$
+\begin{cases}
+\frac{dN_1}{dt}=N_1(r_1-\alpha_{11}N_1-\alpha_{12}N_2)\\
+\frac{dN_2}{dt}=N_2(r_2-\alpha_{22}N_2-\alpha_{21}N_1)
+\end{cases}
+$$
+$N_1$ and $N_2$ are the competitors, $r_1$ and $r_2$ their growth rates, $\alpha_{11}$ and $\alpha_{22}$ the strength of their intraspecific competition and $\alpha_{12}$ and $\alpha_{21}$ the strength of interspecific competition of species 2 on species 1 and species 1 on species 2 respectively.
+
+We can solve for the equilibria and get four equilibria of which only the fourth is non-trivial.
+$$ 
+\begin{cases} N_1^*=0\\ N_2^*=0\end{cases}
+\begin{cases} N_1^*=0\\ N_2^*=-\frac{r_2}{a_{22}}\end{cases}
+\begin{cases} N_1^*=\frac{r_1}{a_{11}}\\ N_2^*=0\end{cases}
+\begin{cases} N_1^*=-\frac{a_{22}r_1-a_{12}r_2}{a_{12}a{21}-a_{11}a_{22}}\\ N_2^*=-\frac{-a_{21}r_1+a_{11}r_2}{a_{12}a_{21}-a_{11}a_{22}}\end{cases}
+$$
 
 
 ### 2.4 chaotic dynamics
