@@ -93,10 +93,11 @@ $$
 \frac{dY}{dt}=\alpha\epsilon XY- mY
 \end{cases}
 $$
+Figure 1 shows the isoclines of this system when the birth rate of the prey $b=2$, the death rate of the prey $d=0.5$, the prey carrying capacity $K=15$, , the encounter rate $\alpha=0.5$, the conversion efficiency of the predator $\epsilon=0.9$, and the death rate for the predator $m=0.6$. We can see in this plot that whenever the system starts with $X>0$ and $Y>0$, we expect a spiral to the equilibrium. For example, let's start with $X=10$ and $Y=10$. The resulting oscillation can be seen in figure 2.
+
 ![The dynamics of the predator prey model with logistic growth](/Users/katjad/Documents/UChicago/Theoretical
 Ecology/TheoreticalEcologyCourseGithub/Assignment 3/2Example1)
 
-Figure 1 shows the isoclines of this system when the birth rate of the prey $b=2$, the death rate of the prey $d=0.5$, the prey carrying capacity $K=15$, , the encounter rate $\alpha=0.5$, the conversion efficiency of the predator $\epsilon=0.9$, and the death rate for the predator $m=0.6$. We can see in this plot that whenever the system starts with $X>0$ and $Y>0$, we expect a spiral to the equilibrium. For example, let's start with $X=10$ and $Y=10$. The resulting oscillation can be seen in figure 2.
 
 ![The dynamics of the predator prey model with logistic growth](/Users/katjad/Documents/UChicago/Theoretical
 Ecology/TheoreticalEcologyCourseGithub/Assignment 3/2Example1Oscillations)
