@@ -1,0 +1,15 @@
+---
+title: "Assignment 4"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Exercise 1 Herd Immunity Threshold
+
+## Exercise 2
+
+##  SIR competition
+Using invasion analysis, we can show that for one pathogen to invade another in a SIR model with demography and no coinfection, it needs to have a higher R0. We could also formally show that when there are two competing pathogens with different R0 values in this model, the one with the greater R0 will outcompete the other. How is this result consistent with the competitive exclusion principle? Use mathematical notation and explain in terms of the resource use of each species. 

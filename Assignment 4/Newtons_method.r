@@ -13,10 +13,12 @@ while(abs(xn-xnp1)>Eps){
 
 ## Template for you to change
 Funct<-function(x,R0){
-	return(???????)
+  # return f(x)
+	return(1-exp(-Ro*xn))
 }
 DeriFunct<-function(x,R0){
-	return(???????)
+  # return f'(x)
+	return(1-)
 }
 
 ## Implementation to plot fraction recovered
