@@ -2,23 +2,14 @@
 ## Stefano Allesina and Sarah Cobey
 ## Code for "Theoretical Ecology"
 
-## Prototype example of the method
-xn<-1000000 # a very large number
-xnp1<-1 # a guesstimate of the root
-Eps<-10^(-3) # tolerance
-while(abs(xn-xnp1)>Eps){
-	xn<-xnp1
-	xnp1<-xn-Funct(xn,par1,par2)/DeriFunct(xn,par1,par2)
-}
 
-## Template for you to change
 Funct<-function(x,R0){
   # return f(x)
-	return(1-exp(-Ro*xn))
+	return(1-exp(-R0*x)-x)
 }
 DeriFunct<-function(x,R0){
   # return f'(x)
-	return(1-)
+	return(-R0*x*exp(-R0*x)-1)
 }
 
 ## Implementation to plot fraction recovered
@@ -38,5 +29,11 @@ RecFracs<-rep(0,500)
 for (i in 1:500){
     RecFracs[i]<-RInf(R0s[i],Funct,DeriFunct)
 }
+HerdImmunity <- 1-1/R0s
 plot(RecFracs~R0s,t="l",xlab="R0",ylab="Fraction Recovered")
+lines(HerdImmunity~R0s, col="blue")
 abline(h=1,col="red")
+legend(x = "bottomright",          # Position
+                legend = c("R(inf)", "herd immunity"),  # Legend texts
+                col = c("black", "blue"),           # Line colors
+                lwd = 2) 
