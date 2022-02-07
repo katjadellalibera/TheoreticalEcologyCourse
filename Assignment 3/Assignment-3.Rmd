@@ -93,7 +93,53 @@ $$
 \frac{dY}{dt}=\alpha\epsilon XY- mY
 \end{cases}
 $$
-Figure 1 shows the isoclines of this system when the birth rate of the prey $b=2$, the death rate of the prey $d=0.5$, the prey carrying capacity $K=15$, , the encounter rate $\alpha=0.5$, the conversion efficiency of the predator $\epsilon=0.9$, and the death rate for the predator $m=0.6$. We can see in this plot that whenever the system starts with $X>0$ and $Y>0$, we expect a spiral to the equilibrium. For example, let's start with $X=10$ and $Y=10$. The resulting oscillation can be seen in figure 2.
+In general, this system will be stable when the the Jacobian matrix takes the form 
+$$
+A=\begin{bmatrix}
+-a & -b\\
+c & 0
+\end{bmatrix}
+$$
+First we find a feasible equilibirum for the system:
+$$
+\frac{dY}{dt}=0=\alpha\epsilon XY- mY\\
+\rightarrow X^*=\frac{m}{\epsilon\alpha}
+$$
+and
+$$
+\frac{dX}{dt}=0=(b-d)X(1-X/K)-\alpha XY \\
+\rightarrow Y^*=\frac{b-d}{\alpha}(1-\frac{X}{K})\\
+\rightarrow Y^*= \frac{(K\epsilon\alpha-m)(b-d)}{\epsilon\alpha^2K}
+$$
+Then we find the Jacobian matrix at this feasible equilibrium
+$$
+J_{xx}= \frac{\partial}{\partial X}(b-d)X(1-\frac{X}{K}-\alpha XY)\\
+= \frac{-2(b-d)X^*}{K}+(b-d)-\alpha Y^*\\
+\rightarrow a_{xx}=J_{xx}|_{X^*,Y^*}=\frac{-(b-d)m}{K\epsilon\alpha}\\
+$$
+$J_{xx}$ is negative whenever $b>d$ and all constants are positive.
+$$
+J_{xy}=-\alpha X^*\\
+\rightarrow a_{xy}=J_{xy}|_{x^*,Y^*}=-\frac{m}{\epsilon}
+$$
+Again, $J_{xy}$ is negative whenever $m>0$and $\epsilon>0$.
+$$
+J_{yx}=\alpha\epsilon Y^*\\
+\rightarrow a_{yx}=J_{yx}|_{X^*,Y^*}= \frac{(b-d)(K\epsilon\alpha-m)}{\alpha K}
+$$
+This is positive because $Y^*$ has to be positive.
+Last we we need to show that $a_{yy}=0$
+$$
+J_{yy}=\alpha\epsilon X^*-m\\
+\rightarrow a_{yy}=J_{yy}|_{X^*,Y^*}=\alpha\epsilon \frac{m}{\alpha\epsilon}-m=0
+$$
+Thus 
+$$ 
+J= \begin{bmatrix}\frac{-(b-d)m}{K\epsilon\alpha} & -\frac{m}{\epsilon}\\-\frac{(b-d)(K\epsilon\alpha-m)}{\alpha K} & 0\end{bmatrix}
+$$
+at the the feasible equilibrium whenever all constants, and populations are positive and $b>d$.
+
+For example, Figure 1 shows the isoclines of this system when the birth rate of the prey $b=2$, the death rate of the prey $d=0.5$, the prey carrying capacity $K=15$, , the encounter rate $\alpha=0.5$, the conversion efficiency of the predator $\epsilon=0.9$, and the death rate for the predator $m=0.6$. We can see in this plot that whenever the system starts with $X>0$ and $Y>0$, we expect a spiral to the equilibrium. For example, let's start with $X=10$ and $Y=10$. The resulting oscillation can be seen in figure 2.
 
 ![The dynamics of the predator prey model with logistic growth](/Users/katjad/Documents/UChicago/Theoretical
 Ecology/TheoreticalEcologyCourseGithub/Assignment 3/2Example1)
@@ -111,6 +157,49 @@ $$
 \end{cases}
 $$
 Here $a$ is the growth rate of the prey $N$ independent of the predator $P$ (this means exponential growth without the predator). $b$ is the predation rate of the prey by the predator, $c$ is the conversion rate of eaten prey into predator (this is $b*\epsilon=c$, where $\epsilon$ is the conversion efficiency of killed prey into predator). Lastly, $d$ is the death rate of the predator without any prey. 
+We can non-dimensionalize using 
+$$
+\begin{cases}
+u(\tau)=\frac{cN(t)}{d}\\
+v(\tau)=\frac{bP(t)}{a}\\
+\tau=at\\
+\alpha=\frac{d}{a}
+\end{cases}
+$$
+and get
+$$
+\begin{cases}
+\frac{du}{d\tau}=u(1-v)\\
+\frac{dv}{d\tau}=\alpha v(u-1)
+\end{cases}
+$$
+
+Again, we start by finding the feasible equilibrium where $\frac{du}{d\tau}=0$ and $\frac{dv}{d\tau}=0$: 
+$$
+\begin{cases}
+0=u(1-v)\\
+0=\alpha v(u-1)
+\end{cases}\\
+\rightarrow \begin{cases}
+u^*=1\\
+v^*=1
+\end{cases}
+$$
+The Jacobian matrix at this feasible equilibrium is 
+$$
+J=
+\begin{bmatrix}
+1-v & -u\\
+\alpha v & \alpha u-\alpha
+\end{bmatrix}\\
+A=J|_{u=u^*,v=v^*}=
+\begin{bmatrix}
+0 & -1\\
+\alpha & 0
+\end{bmatrix}
+$$
+Here, $Tr(A)=0,Det(A)>0$ so we know there is a fixed point center and thus oscillations are stable with the magnitude determined by the constants.
+
 
 Figure 3 shows the isoclines and figure 4 the dynamics of this system when $a=2, b=1, c=0.9, d=0.5, N[0]=5, P[0]=2$
 
@@ -165,7 +254,30 @@ The probably most famous example of a simple equation leading to chaotic behavio
 $$
 x_{n+1}=rx_n(1-x_n)
 $$
-Once again, $r$ represents a growth rate for the population but this time $x$ is not the absolute population size but rather a fraction representing the proportion of the maximum (carrying capacity) population size possible. For low values of $r$, the dynamics are stable, for intermediate values we get oscillations but for values of $r$ close to 4, the dynamics become chaotic. We created the bifurcation diagram for these dynamics in Assignment 1 as seen below.
+Once again, $r$ represents a growth rate for the population but this time $x$ is not the absolute population size but rather a fraction representing the proportion of the maximum (carrying capacity) population size possible. 
+
+Again we find candidates for stability, where $x_{n+1}=x_n=x^*$. This is the case when $x^*_1=0$ or $x^*_2=1-\frac{1}{r}$ (only feasible equilibirum).
+
+We take the derivative to test for stability at the feasible equilibirum.
+$$
+f'(x)=\frac{d}{dx}rx(1-x)=r(1-x)\\
+f'(x)|_{x^*_2}=r(1-2(1-\frac{1}{r}))=2-r
+$$
+If $|2-r|<1$, the point is stable, so for $1<r<3$.
+Next, we look at the period-2 stable points, where $x_{n+2}=f(x_{n+1})=f(f(x_n))=f^{(2)}(x_n)$.
+$$ 
+x= f(f(x))= rf(x)(1-f(x))\\=r^2x(1-x)(1-rx(1-x))\\=-r^2x(x-1)(rx^2-rx+1)
+$$
+There are three solutions for which $x>0$
+$x=1-\frac{1}{r}$
+This is the same we found for the stable equilibirum case and we know it is unstable for $r>3$.
+The other two solutions are more difficult to predict the behavior for
+$$
+x=\frac{r+1\pm\sqrt(r^2-2r-3)}{2r}=y_{1,2}
+$$
+We need to look at $|\frac{\partial}{\partial x}f^{(2)}(x)|y_1<1$.This eventually will give us another value range similar to $1<r<3$ for which there is a stable 2-period solution. Then we repeat the same for period-4, period-8, etc. All of them will occupy smaller and smaller ranges of $r$ approaching 3.57, after which the dynamics are chaotic.
+
+To summarize for low values of $r$, the dynamics are stable, for intermediate values we get oscillations of different periods, but for values of $r$ close to 4, the dynamics become chaotic. We created the bifurcation diagram for these dynamics in Assignment 1 as seen below.
 
 ```{r logisticMap}
 ## This function returns the values of the min and max 
