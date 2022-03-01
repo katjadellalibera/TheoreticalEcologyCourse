@@ -58,7 +58,7 @@ Model<-function(N,pars){
 	
 	maxt = length(N$Time) - 1;
 	for(t in 1:maxt){
-		TimeDiff = ; #1.1 This is the difference between one sampling time and the next
+		TimeDiff = N$Time[t+1]-N$Time[t]; #1.1 This is the difference between one sampling time and the next
 		Model[t] = ; #1.2 The model goes here
 	}
 
