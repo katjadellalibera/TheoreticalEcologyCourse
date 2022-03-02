@@ -59,13 +59,14 @@ Model<-function(N,pars){
 	maxt = length(N$Time) - 1;
 	for(t in 1:maxt){
 		TimeDiff = N$Time[t+1]-N$Time[t]; #1.1 This is the difference between one sampling time and the next
-		Model[t] = Model[t-1]*exp(-m*TimeDiff)+I*(I-exp(-m*TimeDiff))/m; #1.2 The model goes here
+		
+		Model[t+1] = Model[t]*exp(-m*TimeDiff)+I*(1-exp(-m*TimeDiff))/m; #1.2 The model goes here
 	}
 
 	
 	return(Model);
 }
-
+Model(Data,c(1e-4,1.3))
 
 ########## Task 2. Fix up the code for the likelihood function without predation.
 LHoodNoPred<-function(pars){
@@ -77,15 +78,14 @@ LHoodNoPred<-function(pars){
 		Data2 = Data[Data$Plot==plt,];
 		Theory = Model(N=Data2,pars=pars);
 		Data3 = Data2[2:nrow(Data2),];
-		SSE = SSE+(Data3-Theory)**2;  #2.1 Here you update the sum of squared errors between the data and the model
-
-
+		print(Theory)
+		SSE = SSE + sum((Data3$N-Theory)**2);  #2.1 Here you update the sum of squared errors between the data and the model
 
 	}
 	return(SSE);
 }
 
-
+LHoodNoPred(c(1e-4,1.3))
 ############## Task 3. Fix up the code for the likelihood function with predation 
 LHoodPred<-function(params){
 
@@ -103,12 +103,12 @@ LHoodPred<-function(params){
 		pars = c(mhat,I); #Model parameters, to pass to the Model() function
 		Theory = Model(N=Data2, pars = pars); #3.3 Calculate the model prediction here
 		Data3 = Data2[2:nrow(Data2),];
-		SSE = SSE + (Data3-Theory)**2; #3.4 Update the sum of squared errors
-		
+		SSE = SSE + sum((Data3$N-Theory)**2); #3.4 Update the sum of squared errors
 
 	}
 	return(SSE);
 }
+
 
 ################# Task 4. Write an AIC function
 AICCalc<-function(n,K,LHood){
