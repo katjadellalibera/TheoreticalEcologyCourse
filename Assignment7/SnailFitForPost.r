@@ -59,14 +59,12 @@ Model<-function(N,pars){
 	maxt = length(N$Time) - 1;
 	for(t in 1:maxt){
 		TimeDiff = N$Time[t+1]-N$Time[t]; #1.1 This is the difference between one sampling time and the next
-		
-		Model[t+1] = Model[t]*exp(-m*TimeDiff)+I*(1-exp(-m*TimeDiff))/m; #1.2 The model goes here
+		Model[t] = N$N[t]*exp(-m*TimeDiff)+I*(1-exp(-m*TimeDiff))/m; #1.2 The model goes here
 	}
 
 	
 	return(Model);
 }
-Model(Data,c(1e-4,1.3))
 
 ########## Task 2. Fix up the code for the likelihood function without predation.
 LHoodNoPred<-function(pars){
@@ -78,14 +76,12 @@ LHoodNoPred<-function(pars){
 		Data2 = Data[Data$Plot==plt,];
 		Theory = Model(N=Data2,pars=pars);
 		Data3 = Data2[2:nrow(Data2),];
-		print(Theory)
 		SSE = SSE + sum((Data3$N-Theory)**2);  #2.1 Here you update the sum of squared errors between the data and the model
 
 	}
 	return(SSE);
 }
 
-LHoodNoPred(c(1e-4,1.3))
 ############## Task 3. Fix up the code for the likelihood function with predation 
 LHoodPred<-function(params){
 
@@ -112,29 +108,28 @@ LHoodPred<-function(params){
 
 ################# Task 4. Write an AIC function
 AICCalc<-function(n,K,LHood){
-	
-	return(n*log(LHood/n)+2*K(n/(n-K-1))); #4.1 Type in the AIC equation here
+	return(n*log(LHood/n)+2*K*(n/(n-K-1))); #4.1 Type in the AIC equation here
 
 }
 
 ################# Task 5.  Using optim() and finishing the calculation
-#Now we calculate the AICc, which is n*log(SSE/n) = 2*K*n/(n-K-1)
+#Now we calculate the AICc, which is n*log(SSE/n) + 2*K*n/(n-K-1)
 #First we calculate n, then we calculate the likelihoods, and we use the 2 to calc. the AICc
 #The initial population sizes don't count as samples, so n is the number of samples minus the inits
 InitPops = length(Data$Time[Data$Time==0]);
 n = nrow(Data) - InitPops; 
 
 #Calculate the sum of squares for the no-predation model
-Output = optim(par=c(1e-4,1.3),fn=LHoodNoPred);
+Output = optim(par = c(1e-4,1.3),fn=LHoodNoPred);
 #Calculate the AIC for the no-predation model
 K1 = length(Output$par);
 AIC1 = AICCalc(n=n,K=K1,LHood=Output$value) #AICCalc() is the function that calculates the AIC
 
 #Calculate the sum of squares for the predation model
-Output2 = optim(); #5.1 Use the calculation for the no-predation model as a template here
+Output2 = optim(par = c(1e-4, 1.3,1), fn=LHoodPred); #5.1 Use the calculation for the no-predation model as a template here
 #Calculate the AIC for the predation model
 K2 = length(Output2$par);
-AIC2 = AICCalc(); #5.2 Again use the calculation for the no-predation model as a template here
+AIC2 = AICCalc(n=n, K=K1, LHood=Output2$value); #5.2 Again use the calculation for the no-predation model as a template here
 
 
 #Print out the AIC scores for each model, along with the AIC difference
@@ -145,5 +140,8 @@ par(mfrow=c(2,3));
 par(ask=1);
 Plotter(params=Output2$par);
 
+
+## Thoughts: The AIC scores, (regardless of your choice of alpha) reflect some uncertainty 
+# no matter what. We can't know the actual likelihood function.
 
 
