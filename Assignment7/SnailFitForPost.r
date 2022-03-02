@@ -59,7 +59,7 @@ Model<-function(N,pars){
 	maxt = length(N$Time) - 1;
 	for(t in 1:maxt){
 		TimeDiff = N$Time[t+1]-N$Time[t]; #1.1 This is the difference between one sampling time and the next
-		Model[t] = ; #1.2 The model goes here
+		Model[t] = Model[t-1]*exp(-m*TimeDiff)+I*(I-exp(-m*TimeDiff))/m; #1.2 The model goes here
 	}
 
 	
@@ -77,7 +77,7 @@ LHoodNoPred<-function(pars){
 		Data2 = Data[Data$Plot==plt,];
 		Theory = Model(N=Data2,pars=pars);
 		Data3 = Data2[2:nrow(Data2),];
-		SSE = ;  #2.1 Here you update the sum of squared errors between the data and the model
+		SSE = SSE+(Data3-Theory)**2;  #2.1 Here you update the sum of squared errors between the data and the model
 
 
 
@@ -96,14 +96,14 @@ LHoodPred<-function(params){
 
 		Data2 = Data[Data$Plot==plt,];
 		if(Data2$Tmt[1]=="Pred"){
-			mhat = ; #3.1 This is the death rate in the predation plots, which includes alpha
+			mhat = m + alpha; #3.1 This is the death rate in the predation plots, which includes alpha
 		}else{
-			mhat = ; #3.2 This is the death rate in the predator-exclusion plots, which does not include alpha
+			mhat = m; #3.2 This is the death rate in the predator-exclusion plots, which does not include alpha
 		}
 		pars = c(mhat,I); #Model parameters, to pass to the Model() function
-		Theory = ; #3.3 Calculate the model prediction here
+		Theory = Model(N=Data2, pars = pars); #3.3 Calculate the model prediction here
 		Data3 = Data2[2:nrow(Data2),];
-		SSE = ; #3.4 Update the sum of squared errors
+		SSE = SSE + (Data3-Theory)**2; #3.4 Update the sum of squared errors
 		
 
 	}
@@ -113,7 +113,7 @@ LHoodPred<-function(params){
 ################# Task 4. Write an AIC function
 AICCalc<-function(n,K,LHood){
 	
-	return(); #4.1 Type in the AIC equation here
+	return(n*log(LHood/n)+2*K(n/(n-K-1))); #4.1 Type in the AIC equation here
 
 }
 
