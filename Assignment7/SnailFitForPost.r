@@ -129,7 +129,7 @@ AIC1 = AICCalc(n=n,K=K1,LHood=Output$value) #AICCalc() is the function that calc
 Output2 = optim(par = c(1e-4, 1.3,1), fn=LHoodPred); #5.1 Use the calculation for the no-predation model as a template here
 #Calculate the AIC for the predation model
 K2 = length(Output2$par);
-AIC2 = AICCalc(n=n, K=K1, LHood=Output2$value); #5.2 Again use the calculation for the no-predation model as a template here
+AIC2 = AICCalc(n=n, K=K2, LHood=Output2$value); #5.2 Again use the calculation for the no-predation model as a template here
 
 
 #Print out the AIC scores for each model, along with the AIC difference
@@ -139,6 +139,8 @@ cat("AIC1:",AIC1," AIC2:",AIC2," Delta AIC:",AIC1-AIC2,"\n");
 par(mfrow=c(2,3));
 par(ask=1);
 Plotter(params=Output2$par);
+
+
 
 
 ## Thoughts: The AIC scores, (regardless of your choice of alpha) reflect some uncertainty 
