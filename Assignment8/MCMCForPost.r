@@ -25,10 +25,10 @@ logLHoodHtg<-function(par){
 	V  = par[2];
 
 	timeT = 7.0;
-	qoft = (1+vbar*V*Pzero*timeT)**(-1/V); #1. Type in the model that describes the probability of surviving to time T
+	qoft = (1+betaBar*V*Data$Density[0]*timeT)**(-1/V); #1. Type in the model that describes the probability of surviving to time T
 	n0 = Data$Total; #n0 is the total number of insects in each treatment
 	N = Data$Uninfected; #N is the number uninfected
-	logLHood = ; #2. Type in the log-likelihood function for the pure death model
+	logLHood = log(choose(n0,N)*qoft**N*(1-qoft)**(n0-N)) ; #2. Type in the log-likelihood function for the pure death model
 	return(-sum(logLHood));  #We are looking for the negative sum of the log likelihoods across experimental units, because optim is a minimizer
 
 }
