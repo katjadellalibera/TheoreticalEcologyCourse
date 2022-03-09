@@ -268,6 +268,22 @@ lines(S0Range,UpperCost,type="l",lwd=2.5);
 lines(S0Range,LowerCost,type="l",lwd=2.5);
 
 
+# Question 1:
+# What could be happening is that the epizootic is reaching its full potential after a certain critical point.
+# Beyond this point the insect density does not matter as much and thus the infection rates will be very similar.
+
+# Question 2:
+# The key is that there is a critical point in the insect density at which the disease is able to spread.
+# Below this critical point, insects are the most damaging since their numbers are not affected by the epizootic.
+# Above the critical point, where we see a sharp drop in the cost of not spraying, there will be less damage
+# because the insect population is reduced naturally.
+
+# Question 3:
+# As we can see in the plot, the mean cost of not spraying only exceeds $40 at the very peak between
+# 1-2 insects/m^2. However, since the 75% interval exceeds $40 between 1-4 insects/m^2, this would be the upper
+# limit for which spraying could make some sense. On average, spraying is economically not recommended.
+# If $60/ha are absolutely unacceptable, I would recommend spraying at densities between 1 and 2, since 
+# there is a ~25% chance of a cost higher $60.
 
 
 
