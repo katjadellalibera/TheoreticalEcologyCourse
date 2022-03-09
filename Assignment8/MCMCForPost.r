@@ -25,7 +25,7 @@ logLHoodHtg<-function(par){
 	V  = par[2];
 
 	timeT = 7.0;
-	qoft = (1+betaBar*V*Data$Density[0]*timeT)**(-1/V); #1. Type in the model that describes the probability of surviving to time T
+	qoft = (1+betaBar*V*Data$Density*timeT)**(-1/V); #1. Type in the model that describes the probability of surviving to time T
 	n0 = Data$Total; #n0 is the total number of insects in each treatment
 	N = Data$Uninfected; #N is the number uninfected
 	logLHood = log(choose(n0,N)*qoft**N*(1-qoft)**(n0-N)) ; #2. Type in the log-likelihood function for the pure death model
@@ -100,7 +100,6 @@ for(chain in 1:maxchain){
 	AcceptCount = 0;
 	itnStor = 1;
 	for(itn in 1:maxitn){
-	
 		if(itn==1){
 			ScaleSD = 1.2;
 		}else{
@@ -111,27 +110,27 @@ for(chain in 1:maxchain){
 				 NewPars[i2] = CurrentPars[i2];
 			}
 			#3.  Propose a new parameter value, and calculate its posterior.
-			NewPars[i] = ;
-			NewLH = ; 
+			NewPars[i] = norm(PropMean[i],PropSD[i]);
+			NewLH = -LogLHoodHtg(par=NewPars); 
 			NewPost = NewLH;
 			for(i2 in 1:MaxPars){
-			 	NewPost = ;
+			 	NewPost = NewPost + log(dunif(x=(NewPars[i2]),max=Prior[i2]));
 	      	}
 			
 			#Here is the adjustment for the proposal for the current parameter value
 			OldPropAdj = log(dnorm(x=log(CurrentPars[i]),mean=PropMean[i],sd=ScaleSD*PropSD[i]));
 			
 			#4.  Now do the adjustment for the proposal, based on the new parameter value
-			NewPropAdj = 
+			NewPropAdj = log(dnorm(x=log(NewPars[i]),mean = PropMean[i], sd=ScaleSD*PropSD[i]))
 			
 			if(itn>1){
 			 	#6. Write out the acceptance criterion, and decide whether to accept or not 
 				#6a. First, calculate the acceptance criterion
-				Criterion = ;
+				Criterion = exp(NewPost - NewPropAdj - (OldPost - OldPropAdj));
 				#6b. Second, draw a U(0,1) random variate.
-			 	temp = ;
+			 	temp = runif(0,1);
 				#6c. If statement for whether or not to accept
-			 	if(()||()){
+			 	if((Criterion>temp)||()){
 					AcceptCount = AcceptCount + 1;
 					OldPost = NewPost;
 					OldLH = NewLH;
