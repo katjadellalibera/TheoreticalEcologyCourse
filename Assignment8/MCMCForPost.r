@@ -82,6 +82,7 @@ Prior[1] = 1000.0;
 Prior[2] = 1000.0;
 ScaleSD = 1.2;
 
+
 for(chain in 1:maxchain){
 	CurrentPars = c(); #the current values of the parameters
 	NewPars = c(); #the proposed values of the parameters
@@ -110,33 +111,35 @@ for(chain in 1:maxchain){
 				 NewPars[i2] = CurrentPars[i2];
 			}
 			#3.  Propose a new parameter value, and calculate its posterior.
-			NewPars[i] = norm(PropMean[i],PropSD[i]);
-			NewLH = -LogLHoodHtg(par=NewPars); 
+			NewPars[i] = exp(rnorm(1, mean = PropMean[i], sd = PropSD[i]));
+			NewLH = -1*logLHoodHtg(par=NewPars); 
 			NewPost = NewLH;
 			for(i2 in 1:MaxPars){
 			 	NewPost = NewPost + log(dunif(x=(NewPars[i2]),max=Prior[i2]));
 	      	}
 			
 			#Here is the adjustment for the proposal for the current parameter value
-			OldPropAdj = log(dnorm(x=log(CurrentPars[i]),mean=PropMean[i],sd=ScaleSD*PropSD[i]));
+			OldPropAdj = log(dnorm(x=log(CurrentPars[i]), mean = PropMean[i],sd=ScaleSD*PropSD[i]));
+			
 			
 			#4.  Now do the adjustment for the proposal, based on the new parameter value
-			NewPropAdj = log(dnorm(x=log(NewPars[i]),mean = PropMean[i], sd=ScaleSD*PropSD[i]))
+			NewPropAdj = log(dnorm(x=log(NewPars[i]), mean = PropMean[i], sd=PropSD[i]))
+
 			
 			if(itn>1){
 			 	#6. Write out the acceptance criterion, and decide whether to accept or not 
 				#6a. First, calculate the acceptance criterion
 				Criterion = exp(NewPost - NewPropAdj - (OldPost - OldPropAdj));
 				#6b. Second, draw a U(0,1) random variate.
-			 	temp = runif(0,1);
+			 	temp = runif(1,0,1);
 				#6c. If statement for whether or not to accept
-			 	if((Criterion>temp)||()){
+			 	if(Criterion>temp){
 					AcceptCount = AcceptCount + 1;
 					OldPost = NewPost;
 					OldLH = NewLH;
 					#7. Acceptance means setting current parameters equal to proposed parameters
-					for(){
-				 		;
+					for(i2 in 1:MaxPars){
+				 		CurrentPars[i2] = NewPars[i2];
 					}#for i2
 			 	} #if Criterion
 			} #itn>1
@@ -158,6 +161,8 @@ for(chain in 1:maxchain){
 	} #itn
 
 } #chain
+
+
 
 ########### MCMC diagnostics: did the algorithm converge? #############
 require(coda);
