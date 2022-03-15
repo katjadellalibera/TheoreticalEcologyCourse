@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      9460,        285]
-NotebookOptionsPosition[      8451,        259]
-NotebookOutlinePosition[      8842,        275]
-CellTagsIndexPosition[      8799,        272]
+NotebookDataLength[     11012,        332]
+NotebookOptionsPosition[      9805,        304]
+NotebookOutlinePosition[     10196,        320]
+CellTagsIndexPosition[     10153,        317]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -213,8 +213,6 @@ Cell[BoxData[
   "Out[471]=",ExpressionUUID->"070a22fa-7555-47fd-87d7-5a3e99d0bb63"]
 }, Open  ]],
 
-Cell[CellGroupData[{
-
 Cell[BoxData[
  RowBox[{"D", "[", 
   RowBox[{
@@ -239,21 +237,68 @@ Cell[BoxData[
   "In[474]:=",ExpressionUUID->"846cca71-165b-466a-b2c7-a7e0480a8763"],
 
 Cell[BoxData[
+ RowBox[{"Solve", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"-", 
+     FractionBox[
+      RowBox[{
+       UnderoverscriptBox["\[Sum]", "i", "n"], 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"2", " ", "betazero"}], "-", 
+         RowBox[{"2", " ", 
+          SubscriptBox["gamma", "i"]}], "+", 
+         RowBox[{"2", " ", "betaone", " ", 
+          SubscriptBox["x", "i"]}]}], ")"}]}], 
+      RowBox[{"2", " ", "sigma"}]]}], "==", "0"}], ",", "betazero"}], "]"}]], \
+"Input",
+ CellChangeTimes->{{3.855764698404992*^9, 3.8557647093334227`*^9}},
+ CellLabel->
+  "In[475]:=",ExpressionUUID->"0dd96555-ae73-4635-8073-3ed1f42f20a4"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"D", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"-", 
+     FractionBox["1", 
+      RowBox[{"2", "sigma"}]]}], 
+    RowBox[{"Sum", "[", 
+     RowBox[{
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{
+         SubscriptBox["gamma", "i"], "-", "betazero", "-", 
+         RowBox[{"betaone", "*", 
+          SubscriptBox["x", "i"]}]}], ")"}], "2"], ",", 
+      RowBox[{"{", 
+       RowBox[{"i", ",", "n"}], "}"}]}], "]"}]}], ",", "betaone"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.855851324441681*^9, 3.855851325402851*^9}},
+ CellLabel->
+  "In[479]:=",ExpressionUUID->"2fd22f0e-2b2d-42ec-a532-be4e90981a4a"],
+
+Cell[BoxData[
  RowBox[{"-", 
   FractionBox[
    RowBox[{
     UnderoverscriptBox["\[Sum]", "i", "n"], 
     RowBox[{"(", 
      RowBox[{
-      RowBox[{"2", " ", "betazero"}], "-", 
+      RowBox[{"2", " ", "betazero", " ", 
+       SubscriptBox["x", "i"]}], "-", 
       RowBox[{"2", " ", 
-       SubscriptBox["gamma", "i"]}], "+", 
+       SubscriptBox["gamma", "i"], " ", 
+       SubscriptBox["x", "i"]}], "+", 
       RowBox[{"2", " ", "betaone", " ", 
-       SubscriptBox["x", "i"]}]}], ")"}]}], 
+       SubsuperscriptBox["x", "i", "2"]}]}], ")"}]}], 
    RowBox[{"2", " ", "sigma"}]]}]], "Output",
- CellChangeTimes->{3.8557642942538757`*^9, 3.855764450440489*^9},
+ CellChangeTimes->{3.855851352967656*^9},
  CellLabel->
-  "Out[474]=",ExpressionUUID->"0dd96555-ae73-4635-8073-3ed1f42f20a4"]
+  "Out[479]=",ExpressionUUID->"e7064dd7-5fa9-415f-82fd-55ebbfe5cfd4"]
 }, Open  ]]
 }, Open  ]]
 },
@@ -282,9 +327,11 @@ Cell[1034, 36, 1116, 35, 108, "Input",ExpressionUUID->"03a1f813-bf50-4c0b-8775-4
 Cell[2153, 73, 455, 11, 46, "Message",ExpressionUUID->"c8aa67d4-4cfb-446e-96b1-907a9e725f9c"],
 Cell[2611, 86, 4557, 126, 194, "Output",ExpressionUUID->"070a22fa-7555-47fd-87d7-5a3e99d0bb63"]
 }, Open  ]],
+Cell[7183, 215, 690, 21, 50, "Input",ExpressionUUID->"846cca71-165b-466a-b2c7-a7e0480a8763"],
+Cell[7876, 238, 650, 19, 52, InheritFromParent,ExpressionUUID->"0dd96555-ae73-4635-8073-3ed1f42f20a4"],
 Cell[CellGroupData[{
-Cell[7205, 217, 690, 21, 50, "Input",ExpressionUUID->"846cca71-165b-466a-b2c7-a7e0480a8763"],
-Cell[7898, 240, 525, 15, 55, "Output",ExpressionUUID->"0dd96555-ae73-4635-8073-3ed1f42f20a4"]
+Cell[8551, 261, 638, 20, 50, "Input",ExpressionUUID->"2fd22f0e-2b2d-42ec-a532-be4e90981a4a"],
+Cell[9192, 283, 585, 17, 58, "Output",ExpressionUUID->"e7064dd7-5fa9-415f-82fd-55ebbfe5cfd4"]
 }, Open  ]]
 }, Open  ]]
 }
