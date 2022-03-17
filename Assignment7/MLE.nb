@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     11012,        332]
-NotebookOptionsPosition[      9805,        304]
-NotebookOutlinePosition[     10196,        320]
-CellTagsIndexPosition[     10153,        317]
+NotebookDataLength[     11561,        343]
+NotebookOptionsPosition[     10158,        313]
+NotebookOutlinePosition[     10549,        329]
+CellTagsIndexPosition[     10506,        326]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -257,8 +257,6 @@ Cell[BoxData[
  CellLabel->
   "In[475]:=",ExpressionUUID->"0dd96555-ae73-4635-8073-3ed1f42f20a4"],
 
-Cell[CellGroupData[{
-
 Cell[BoxData[
  RowBox[{"D", "[", 
   RowBox[{
@@ -281,24 +279,35 @@ Cell[BoxData[
  CellLabel->
   "In[479]:=",ExpressionUUID->"2fd22f0e-2b2d-42ec-a532-be4e90981a4a"],
 
+Cell[CellGroupData[{
+
 Cell[BoxData[
- RowBox[{"-", 
-  FractionBox[
-   RowBox[{
-    UnderoverscriptBox["\[Sum]", "i", "n"], 
-    RowBox[{"(", 
-     RowBox[{
-      RowBox[{"2", " ", "betazero", " ", 
-       SubscriptBox["x", "i"]}], "-", 
-      RowBox[{"2", " ", 
-       SubscriptBox["gamma", "i"], " ", 
-       SubscriptBox["x", "i"]}], "+", 
-      RowBox[{"2", " ", "betaone", " ", 
-       SubsuperscriptBox["x", "i", "2"]}]}], ")"}]}], 
-   RowBox[{"2", " ", "sigma"}]]}]], "Output",
- CellChangeTimes->{3.855851352967656*^9},
+ RowBox[{"Covariance", "[", 
+  RowBox[{"x", ",", "y"}], "]"}]], "Input",
+ CellChangeTimes->{{3.8559217008928633`*^9, 3.85592170472405*^9}},
  CellLabel->
-  "Out[479]=",ExpressionUUID->"e7064dd7-5fa9-415f-82fd-55ebbfe5cfd4"]
+  "In[481]:=",ExpressionUUID->"0c4f3042-6008-4c11-8c71-b9ccf551fec5"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Covariance", "vctmat", 
+   "\"The arguments to Covariance are not a pair of vectors or a pair of \
+matrices of equal length.\"", 2, 481, 269, 27185716928420403205, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.8559217059914217`*^9},
+ CellLabel->
+  "During evaluation of \
+In[481]:=",ExpressionUUID->"2a12e59a-fdc0-4b80-82b4-b6d802e0c349"],
+
+Cell[BoxData[
+ RowBox[{"Sum", "[", 
+  RowBox[{"(", 
+   RowBox[{
+    SubscriptBox["x", "i"], "-", "avgx"}], ")"}]}]], "Input",
+ CellChangeTimes->{{3.855921761868587*^9, 3.8559217618708687`*^9}, {
+  3.85592181188348*^9, 
+  3.85592183717936*^9}},ExpressionUUID->"c2ab0cc5-6260-48ca-bd45-\
+178ca49d191b"]
 }, Open  ]]
 }, Open  ]]
 },
@@ -329,9 +338,11 @@ Cell[2611, 86, 4557, 126, 194, "Output",ExpressionUUID->"070a22fa-7555-47fd-87d7
 }, Open  ]],
 Cell[7183, 215, 690, 21, 50, "Input",ExpressionUUID->"846cca71-165b-466a-b2c7-a7e0480a8763"],
 Cell[7876, 238, 650, 19, 52, InheritFromParent,ExpressionUUID->"0dd96555-ae73-4635-8073-3ed1f42f20a4"],
+Cell[8529, 259, 638, 20, 50, "Input",ExpressionUUID->"2fd22f0e-2b2d-42ec-a532-be4e90981a4a"],
 Cell[CellGroupData[{
-Cell[8551, 261, 638, 20, 50, "Input",ExpressionUUID->"2fd22f0e-2b2d-42ec-a532-be4e90981a4a"],
-Cell[9192, 283, 585, 17, 58, "Output",ExpressionUUID->"e7064dd7-5fa9-415f-82fd-55ebbfe5cfd4"]
+Cell[9192, 283, 236, 5, 30, "Input",ExpressionUUID->"0c4f3042-6008-4c11-8c71-b9ccf551fec5"],
+Cell[9431, 290, 396, 9, 28, "Message",ExpressionUUID->"2a12e59a-fdc0-4b80-82b4-b6d802e0c349"],
+Cell[9830, 301, 300, 8, 30, InheritFromParent,ExpressionUUID->"c2ab0cc5-6260-48ca-bd45-178ca49d191b"]
 }, Open  ]]
 }, Open  ]]
 }
